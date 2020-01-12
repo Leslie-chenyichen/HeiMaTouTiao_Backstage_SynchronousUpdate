@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="container">
-      <img src="../assets/avatar.jpg" class="avatar" alt="">
+      <img src="../assets/leslie.jpg" class="avatar" alt="">
       <el-form :model="loginForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
         <el-form-item prop="username">
           <el-input v-model="loginForm.username" placeholder="请输入用户名" prefix-icon="icon-user"></el-input>

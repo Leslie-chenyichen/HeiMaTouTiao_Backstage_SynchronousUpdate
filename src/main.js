@@ -7,6 +7,7 @@ import App from './App.vue'
 import router from '@/router/index.js'
 // 引入框架
 import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 // 引入面的样式
 import '@/styles/index.less'
 Vue.use(ElementUI)
