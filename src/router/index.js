@@ -23,7 +23,7 @@ let router = new VueRouter({
       name: 'Index',
       path: '/index',
       component: Index,
-      redirect: { name: 'Wecomee' }, // 默认自动显示欢迎信息
+      redirect: { name: 'Welcome' }, // 默认自动显示欢迎信息
       children: [
         {
           name: 'Welcome',
