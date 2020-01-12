@@ -7,6 +7,8 @@ import VueRouter from 'vue-router'
 import Login from '@/views/Login.vue'
 // 引首页的的路由
 import Index from '@/views/Index.vue'
+import Postlist from '@/views/Postlist.vue'
+import Welcome from '@/views/Welcome.vue'
 
 Vue.use(VueRouter)
 // 新建一下路由
@@ -20,7 +22,20 @@ let router = new VueRouter({
     {
       name: 'Index',
       path: '/index',
-      component: Index
+      component: Index,
+      redirect: { name: 'Wecomee' }, // 默认自动显示欢迎信息
+      children: [
+        {
+          name: 'Welcome',
+          path: '/welcome',
+          component: Welcome
+        },
+        {
+          name: 'Postlist',
+          path: 'postlist',
+          component: Postlist
+        }
+      ]
     }
   ]
 })

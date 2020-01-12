@@ -65,7 +65,8 @@
                 <span> 退出</span>
             </div>
         </el-header>
-        <el-main>黑马头条后台管理系统欢迎你的到来
+        <el-main>
+          黑马头条后台管理系统欢迎你的到来
             <router-view></router-view>
         </el-main>
       </el-container>
