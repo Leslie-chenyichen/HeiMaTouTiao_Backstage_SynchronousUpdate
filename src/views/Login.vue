@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="container">
-      <img src="../assets/leslie.jpg" class="avatar" alt="">
+      <img src="../assets/avatar.jpg" class="avatar" alt />
       <el-form :model="loginForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
         <el-form-item prop="username">
           <el-input v-model="loginForm.username" placeholder="请输入用户名" prefix-icon="icon-user"></el-input>
@@ -10,7 +10,7 @@
           <el-input v-model="loginForm.password" placeholder="请输入密码" prefix-icon="icon-key"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" class="login-btn">登陆</el-button>
+          <el-button type="primary" class="login-btn" @click="loginSubmit">登陆</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-
+import { login } from '@/apis/user.js'
 export default {
   data () {
     return {
@@ -29,13 +29,34 @@ export default {
       // 添加数据的验证规则
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' }
+          { required: true, message: '请你输入用户名', trigger: 'blur' }
         ],
         password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 3, max: 16, message: '请输入3-16位的密码', trigger: 'blur' }
+          { required: true, message: '请你输入密码', trigger: 'blur' },
+          { min: 3, max: 16, message: '请你输入3-16位的密码', trigger: 'blur' }
         ]
       }
+    }
+  },
+  methods: {
+    loginSubmit () {
+      this.$refs.loginForm.validate(async valid => {
+        if (valid) {
+          let res = await login(this.loginForm)
+          console.log(res)
+          if (res.data.message === '登录成功') {
+            localStorage.setItem('hima_toutiao_houtai_41', res.data.data.toke)
+            // 跳转到后台的首页
+            this.$router.push({ name: 'Index' })
+          } else {
+            // 给出弹框的提示
+            this.$message.error(res.data.message)
+          }
+        } else {
+          this.$message.warning('数据输入不合法')
+          return false
+        }
+      })
     }
   }
 }
