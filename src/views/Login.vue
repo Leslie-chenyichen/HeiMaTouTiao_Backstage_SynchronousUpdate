@@ -2,7 +2,7 @@
   <div class="login">
     <div class="container">
       <img src="../assets/avatar.jpg" class="avatar" alt />
-      <el-form :model="loginForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
+      <el-form :model="loginForm" :rules="rules" ref="loginForm" class="demo-ruleForm">
         <el-form-item prop="username">
           <el-input v-model="loginForm.username" placeholder="请输入用户名" prefix-icon="icon-user"></el-input>
         </el-form-item>
@@ -10,7 +10,7 @@
           <el-input v-model="loginForm.password" placeholder="请输入密码" prefix-icon="icon-key"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" class="login-btn" @click="loginSubmit">登陆</el-button>
+          <el-button type="primary" class="login-btn" @click="loginSubmit">登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -23,8 +23,8 @@ export default {
   data () {
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: '10086',
+        password: '123'
       },
       // 添加数据的验证规则
       rules: {
@@ -45,7 +45,7 @@ export default {
           let res = await login(this.loginForm)
           console.log(res)
           if (res.data.message === '登录成功') {
-            localStorage.setItem('hima_toutiao_houtai_41', res.data.data.toke)
+            localStorage.setItem('hima_toutiao_houtai_41', res.data.data.token)
             // 跳转到后台的首页
             this.$router.push({ name: 'Index' })
           } else {
