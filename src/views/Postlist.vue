@@ -17,10 +17,10 @@
           <el-tooltip class="item" effect="dark" content="编辑" placement="top">
             <el-button type="primary" icon="el-icon-edit" @click="edit(scope.row)"></el-button>
           </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="编辑" placement="top">
+          <el-tooltip class="item" effect="dark" content="分享" placement="top">
             <el-button type="success" icon="el-icon-share"></el-button>
           </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="编辑" placement="top">
+          <el-tooltip class="item" effect="dark" content="" placement="top">
            <el-button type="warning " icon="el-icon-delete"></el-button>
           </el-tooltip>
         </template>
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { getPostList } from '@/apis/article.js'
 export default {
   data () {
     return {
@@ -60,6 +61,10 @@ export default {
   methods: {
     edit (data) {
       console.log(data)
+    },
+    async mounted () {
+      let res = await getPostList()
+      console.log(res)
     }
   }
 }

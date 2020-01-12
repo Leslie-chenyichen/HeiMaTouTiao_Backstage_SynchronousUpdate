@@ -8,3 +8,10 @@ export const login = (data) => {
     data
   })
 }
+// 获取文章列表
+export const GetPostList = () => {
+  return axios({
+    url: '/login'
+
+  })
+}
