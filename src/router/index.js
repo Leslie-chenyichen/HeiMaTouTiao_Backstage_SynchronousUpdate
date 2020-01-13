@@ -9,6 +9,7 @@ import Login from '@/views/Login.vue'
 import Index from '@/views/Index.vue'
 import Postlist from '@/views/Postlist.vue'
 import Welcome from '@/views/Welcome.vue'
+import PostPublish from '@/views/PostPublish.vue'
 
 Vue.use(VueRouter)
 // 新建一下路由
@@ -34,6 +35,11 @@ let router = new VueRouter({
           name: 'Postlist',
           path: 'postlist',
           component: Postlist
+        },
+        {
+          name: 'PostPublish',
+          path: 'postPublish',
+          component: PostPublish
         }
       ]
     }
