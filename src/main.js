@@ -11,12 +11,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // 引入页面的less样式
 import '@/styles/index.less'
-
 Vue.use(ElementUI)
-
 // 阻止启动生产消息，常用作指令。
 Vue.config.productionTip = false
-
 new Vue({
   router,
   render: h => h(App)
