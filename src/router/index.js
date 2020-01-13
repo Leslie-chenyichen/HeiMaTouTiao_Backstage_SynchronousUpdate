@@ -5,7 +5,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // 引入登录页面，注册，发网址id
 import Login from '@/views/Login.vue'
-// 引首页的的路由
+// 引入首页的的路由
 import Index from '@/views/Index.vue'
 import Postlist from '@/views/Postlist.vue'
 import Welcome from '@/views/Welcome.vue'

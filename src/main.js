@@ -9,7 +9,7 @@ import router from '@/router/index.js'
 import ElementUI from 'element-ui'
 // 后台_Element-UI框架的样式
 import 'element-ui/lib/theme-chalk/index.css'
-// 引入面的样式
+// 引入页面的less样式
 import '@/styles/index.less'
 
 Vue.use(ElementUI)
