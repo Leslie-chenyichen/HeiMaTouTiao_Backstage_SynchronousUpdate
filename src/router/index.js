@@ -17,7 +17,7 @@ let router = new VueRouter({
   routes: [
     {
       name: 'Login',
-      path: '/login',
+      path: '/',
       component: Login
     },
     {
@@ -46,19 +46,19 @@ let router = new VueRouter({
   ]
 })
 // 添加导航守卫
-// router.beforeEach((to, from, next) => {
-//   // 判断当前是否跳转到登陆页，如果是，直接next
-//   if (to.path === '/login') {
-//     next()
-//   } else {
-//     // 判断是否有登陆状态
-//     let token = localStorage.getItem('heima_toutiao_houtai_41')
-//     if (token) {
-//       next()
-//     } else {
-//       next('/login')
-//     }
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  // 判断当前是否跳转到登陆页，如果是，直接next
+  if (to.path === '/login') {
+    next()
+  } else {
+    // 判断是否有登陆状态
+    let token = localStorage.getItem('heima_toutiao_houtai_41')
+    if (token) {
+      next()
+    } else {
+      next('/login')
+    }
+  }
+})
 
 export default router

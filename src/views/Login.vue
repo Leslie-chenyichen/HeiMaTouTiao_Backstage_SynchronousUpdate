@@ -23,8 +23,8 @@ export default {
   data () {
     return {
       loginForm: {
-        username: '10086',
-        password: '123'
+        username: '',
+        password: ''
       },
       // 添加数据的验证规则
       rules: {
@@ -45,7 +45,7 @@ export default {
           let res = await login(this.loginForm)
           console.log(res)
           if (res.data.message === '登录成功') {
-            localStorage.setItem('hima_toutiao_houtai_41', res.data.data.token)
+            localStorage.setItem('heima_toutiao_houtai_41', res.data.data.token)
             // 跳转到后台的首页
             this.$router.push({ name: 'Index' })
           } else {
@@ -53,6 +53,7 @@ export default {
             this.$message.error(res.data.message)
           }
         } else {
+          // 给用户弹出数据不合法的提示框
           this.$message.warning('数据输入不合法')
           return false
         }
