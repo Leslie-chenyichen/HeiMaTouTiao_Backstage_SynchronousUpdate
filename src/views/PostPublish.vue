@@ -42,8 +42,17 @@
             <el-checkbox v-for="cate in cateList" :label="cate.id" :key="cate.id">{{cate.name}}</el-checkbox>
           </el-checkbox-group>
         </el-form-item>
-        <!-- 提交按钮 -->
-        <el-button type="primary">发布文章</el-button>
+        <!-- 封面区域 -->
+        <!-- 单选组 -->
+        <el-form-item label="封面:">
+          <el-upload
+            action="//jsonplaceholder.typicode.com/posts/"
+            list-type="picture-card">
+            <i class="el-icon-plus"></i>
+          </el-upload>
+        </el-form-item>
+        <!-- 提交按钮区域 -->
+        <el-button type="primary" @click="publishPost" style="float:right;margin-bottom:20px">发布文章</el-button>
       </el-form>
     </el-card>
   </div>
