@@ -23,7 +23,12 @@
         </el-form-item>
         <!-- 富文本框  -->
         <el-form-item label="内容:">
-          <VueEditor :config="config" ref="vueEditor" />
+          <VueEditor :config="config" v-if="post.type===1" ref="vueEditor" />
+          <!-- 上传区域 -->
+          <el-upload class="upload-demo" action v-if="post.type===2">
+            <el-button size="small" type="primary">点击上传</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传视频文件</div>
+          </el-upload>
         </el-form-item>
         <!-- 复选框 -->
         <el-form-item label="栏目:">
@@ -33,10 +38,12 @@
             @change="handleCheckAllChange"
           >全选</el-checkbox>
           <div style="margin: 15px 0;"></div>
-          <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
+          <el-checkbox-group v-model="post.categories" @change="handleCheckedCitiesChange">
             <el-checkbox v-for="cate in cateList" :label="cate.id" :key="cate.id">{{cate.name}}</el-checkbox>
           </el-checkbox-group>
         </el-form-item>
+        <!-- 提交按钮 -->
+        <el-button type="primary">发布文章</el-button>
       </el-form>
     </el-card>
   </div>
@@ -45,12 +52,16 @@
 <script>
 import VueEditor from 'vue-word-editor'
 import 'quill/dist/quill.snow.css'
+import { getCateList } from '@/apis/cate.js'
 export default {
   components: {
     VueEditor
   },
   data () {
     return {
+      isIndeterminate: true,
+      checkAll: false,
+      cateList: [],
       // 标题部分
       post: {
         title: '',
@@ -59,8 +70,45 @@ export default {
         cover: [],
         type: 1,
         elForm: ''
+      },
+      config: {
+        // 上传图片的配置
+        uploadImage: {
+          url: 'http://localhost:3000/upload',
+          name: 'file',
+          // 注意了这个res是结果，insert方法会把内容注入到编辑器中，res.data.url是资源地址
+          uploadSuccess (res, insert) {
+            insert('http://localhost:3000' + res.data.url)
+          }
+        },
+        // 上传视频的配置
+        uploadVideo: {
+          url: 'http://localhost:3000/upload',
+          name: 'file',
+          uploadSuccess (res, insert) {
+            insert('http://localhost:3000' + res.data.url)
+          }
+        }
       }
     }
+  },
+  methods: {
+    // 全选与全不选
+    handleCheckAllChange (val) {
+      /* this.checkedCities = val ? cityOptions : []
+      this.isIndeterminate = false */
+    },
+    // 单击全选的状态
+    handleCheckedCitiesChange (value) {
+      /* let checkedCount = value.length
+      this.checkAll = checkedCount === this.cities.length
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length */
+    }
+  },
+  async mounted () {
+    let res = await getCateList()
+    console.log(res)
+    this.cateList = res.data.data.splice(2)
   }
 }
 </script>

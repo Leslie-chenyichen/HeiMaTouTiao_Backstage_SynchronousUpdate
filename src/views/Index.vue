@@ -81,6 +81,9 @@ export default {}
 <style lang='less' secped>
 .index {
   height: 100%;
+  .el-menu{
+    border-right:0
+  }
   .el-menu-admin:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;

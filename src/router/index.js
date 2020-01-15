@@ -3,7 +3,7 @@
 import Vue from 'vue'
 // 引入路由依赖包
 import VueRouter from 'vue-router'
-// 引入登录页面，注册，发网址id
+// 引入登录页面，注册
 import Login from '@/views/Login.vue'
 // 引入首页的的路由
 import Index from '@/views/Index.vue'
